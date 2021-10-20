@@ -15,9 +15,9 @@
     "type": "git",
     "url": "git+https://github.com/ATQQ/webpack-vite-serve.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["vite","webpack","vue","react","vite-plugin"],
+  "author": "sugar",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ATQQ/webpack-vite-serve/issues"
   },
