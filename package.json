@@ -1,0 +1,42 @@
+{
+  "name": "webpack-vite-serve",
+  "version": "0.0.0",
+  "description": "为webpack项目提供开发环境下使用Vite启动的能力",
+  "main": "dist/index.js",
+  "bin": {
+    "wvs": "./dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsc -w -p .",
+    "build": "rimraf dist && tsc -p .",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ATQQ/webpack-vite-serve.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ATQQ/webpack-vite-serve/issues"
+  },
+  "homepage": "https://github.com/ATQQ/webpack-vite-serve#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^8.2.0",
+    "cross-spawn": "^7.0.3",
+    "inquirer": "^8.2.0",
+    "vite": "^2.6.10"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.1",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "^8.0.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.4.4"
+  }
+}
