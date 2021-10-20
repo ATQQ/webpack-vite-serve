@@ -1,8 +1,34 @@
 # webpack-vite-serve
 为webpack项目提供开发环境下使用Vite启动的能力
 
+相关文章：[webpack项目接入Vite的通用方案介绍](https://sugarat.top/technology/learn/webapck2vite.html)
 ## Usage
-TODO: 输出中
+TODO: 能力建设中
+```sh
+npm install webpack-vite-serve -D
+# or
+yarn add webpack-vite-serve -D
+# or
+pnpm add webpack-vite-serve -D
+```
+
+package.json
+```json
+{
+  "scripts": {
+    "vite": "wvs start"
+  }
+}
+```
+
+运行
+```sh
+npm run vite
+# or
+yarn vite
+# or
+pnpm vite
+```
 ## Dev - 开发
 使用pnpm
 ```sh
