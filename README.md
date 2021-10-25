@@ -16,6 +16,8 @@ package.json
 ```json
 {
   "scripts": {
+    "vite:vue": "wvs start -f vue",
+    "vite:react": "wvs start -f react",
     "vite": "wvs start"
   }
 }
@@ -29,6 +31,20 @@ yarn vite
 # or
 pnpm vite
 ```
+## 可选参数
+* -f,--framework：指定使用的业务框架
+
+## Demo
+* JS
+  * [x] Vue SPA
+  * [x] React SPA
+  * [ ] Vue MPA
+  * [ ] React MPA
+* TS
+  * [ ] Vue SPA
+  * [ ] React SPA
+  * [ ] Vue MPA
+  * [ ] React MPA
 ## Dev - 开发
 使用pnpm
 ```sh
