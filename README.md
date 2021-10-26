@@ -34,7 +34,7 @@ pnpm vite
 ## 可选参数
 * -f,--framework：指定使用的业务框架
 
-## Demo
+## Demos
 * JS
   * [x] Vue SPA
   * [x] React SPA
@@ -45,7 +45,31 @@ pnpm vite
   * [ ] React SPA
   * [ ] Vue MPA
   * [ ] React MPA
-## Dev - 开发
+
+### 运行demo
+```sh
+# 1
+cd demos
+
+# 2
+cd js
+
+# 3
+cd demoProject
+
+# 4
+yarn install
+  # or
+npm install
+
+# 5
+# run webpack devServer
+npm run dev
+# run vite devServer
+npm run vite
+```
+
+## Dev - 本地开发项目
 使用pnpm
 ```sh
 npm i -g pnpm
