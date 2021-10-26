@@ -1,4 +1,4 @@
-import { spawn } from 'child_process';
+import spawn from 'cross-spawn';
 
 export default function startCommand(options:{[key:string]:string}) {
   const { framework = '' } = options;

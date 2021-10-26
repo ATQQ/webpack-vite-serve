@@ -66,7 +66,7 @@ npm install
 # run webpack devServer
 npm run dev
 # run vite devServer
-npm run vite
+npm run dev:vite
 ```
 
 ## Dev - 本地开发项目

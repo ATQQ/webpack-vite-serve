@@ -1,12 +1,19 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable global-require */
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import vue from '@vitejs/plugin-vue';
 import { htmlTemplatePlugin, pageEntryPlugin } from '../plugins/index';
 
-const extraPlugins: any[] = [
-  process.env.framework === 'REACT' ? [react()] : [],
-  process.env.framework === 'VUE' ? [vue()] : [],
-];
+let extraPlugins = [];
+
+if (process.env.framework === 'VUE') {
+  const vue = require('@vitejs/plugin-vue');
+  extraPlugins = [vue()];
+}
+if (process.env.framework === 'REACT') {
+  const react = require('@vitejs/plugin-react');
+  extraPlugins = [react()];
+}
+
 module.exports = defineConfig({
   plugins: [
     htmlTemplatePlugin(),
