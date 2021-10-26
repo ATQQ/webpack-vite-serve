@@ -10,11 +10,11 @@
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1",
-    "webpack-vite-serve": "file:../../../"
+    "webpack-vite-serve": "latest"
   },
   "scripts": {
-    "dev": "react-scripts start",
-    "vite": "wvs start -f react",
+    "dev": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
+    "dev:vite": "wvs start -f react",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
