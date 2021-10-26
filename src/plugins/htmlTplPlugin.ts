@@ -1,16 +1,23 @@
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import type { PluginOption } from 'vite';
-import { getReqURL } from '../utils';
+import { getCWD, getReqURL } from '../utils';
 
 /**
  * 获取原始模板
  */
 function loadHtmlContent(reqPath) {
-  // 单页默认 public/index.html
+  // 兜底页面
+  const pages = [path.resolve(__dirname, '../../public/index.html')];
+
+  // TODO:多页应用可以根据请求的path：reqPath 作进一步的判断
+
+  // 单页/多页默认 public/index.html
   const tplPath = 'public/index.html';
-  // 可以根据请求的path：reqPath 作进一步的判断
-  return readFileSync(path.resolve(process.cwd(), tplPath), { encoding: 'utf-8' });
+  pages.unshift(path.resolve(getCWD(), tplPath));
+
+  const page = pages.find((v) => existsSync(v));
+  return readFileSync(page, { encoding: 'utf-8' });
 }
 
 /**

@@ -25,7 +25,7 @@ function getPageEntry(reqUrl) {
   const { pathname } = new URL(reqUrl, 'http://localhost');
 
   const isMPA = false;
-  // MPA 根据页面路由动态的处理
+  // TODO:MPA 根据页面路由动态的处理
   if (isMPA) {
     pathname.split('/');
     // 进一步的处理
@@ -43,7 +43,11 @@ export default function pageEntryPlugin(): PluginOption {
     name: 'wvs-page-entry',
     apply: 'serve',
     transformIndexHtml(html, ctx) {
-      return html.replace('</body>', `<script type="module" src="${getPageEntry(ctx.originalUrl)}"></script>
+      const entry = getPageEntry(ctx.originalUrl);
+      if (!entry) {
+        return html;
+      }
+      return html.replace('</body>', `<script type="module" src="${entry}"></script>
         </body>
         `);
     },
