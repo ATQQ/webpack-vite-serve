@@ -1,6 +1,6 @@
 {
   "name": "webpack-vite-serve",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "为webpack项目提供开发环境下使用Vite启动的能力",
   "main": "dist/index.js",
   "bin": {
