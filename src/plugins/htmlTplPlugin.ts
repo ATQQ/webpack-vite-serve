@@ -57,7 +57,7 @@ export default function HtmlTemplatePlugin(): PluginOption {
     },
     transformIndexHtml(html) {
       // data可以传入模板中包含的一些变量
-      // 可以再此处获取webpack配置，做自动转换
+      // TODO:可以再此处获取webpack配置，做自动转换
       return initTpl(html, {
         PUBLIC_URL: '.',
         BASE_URL: './',

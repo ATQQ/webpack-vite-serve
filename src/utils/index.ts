@@ -1,3 +1,5 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 import { URL } from 'url';
 import type { Connect } from 'vite/dist/node';
 import ejs from 'ejs';
@@ -15,4 +17,12 @@ export function getReqURL(request:Connect.IncomingMessage) {
 */
 export function transformEjsTpl(html:string, data = {}, ops = {}) {
   return ejs.render(html, data, ops);
+}
+
+export function moduleIsExist(name) {
+  try {
+    return !!require(name);
+  } catch {
+    return false;
+  }
 }
