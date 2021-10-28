@@ -19,7 +19,7 @@ if (process.env.framework === 'REACT') {
 
 // 依赖预构建
 const optimizeDepsInclude = [
-  'vue', 'vue-router', 'vuex',
+  'vue', 'vue-router', 'vuex', 'react', 'react-dom', 'react-router',
 ].filter((d) => moduleIsExist(d));
 
 module.exports = defineConfig({
