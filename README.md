@@ -39,13 +39,13 @@ pnpm vite
 ## Demos
 ### Supports - 支持进度
 * JS
-  * [x] Vue SPA
+  * [x] Vue2 SPA
   * [x] React SPA
   * [ ] Vue MPA
   * [ ] React MPA
 * TS
-  * [ ] Vue SPA
-  * [ ] React SPA
+  * [x] Vue3 SPA
+  * [x] React SPA
   * [ ] Vue MPA
   * [ ] React MPA
 

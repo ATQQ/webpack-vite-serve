@@ -1,23 +1,18 @@
-# vue-spa
+# vue2-spa-js
 
 ## Project setup
 ```
-yarn install
+pnpm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn dev
+pnpm run dev
 ```
 
 ### Compiles and minifies for production
 ```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
+pnpm run build
 ```
 
 ### Customize configuration

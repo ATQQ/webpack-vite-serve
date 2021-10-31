@@ -26,3 +26,17 @@ export function moduleIsExist(name) {
     return false;
   }
 }
+
+/**
+ * 判断是否单页应用
+ */
+export function isSPA(framework) {
+  return false;
+}
+
+/**
+ * 判断是否单页应用
+ */
+export function isMPA(framework) {
+  return false;
+}

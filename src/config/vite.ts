@@ -8,9 +8,16 @@ import { getCWD, moduleIsExist } from '../utils';
 
 const extraPlugins = [];
 
-if (process.env.framework === 'VUE') {
-  const vue = require('@vitejs/plugin-vue');
-  extraPlugins.push(...[vue()]);
+if (process.env.framework === 'VUE' && moduleIsExist('vue')) {
+  const { version } = require('vue/package.json');
+  // TODO；根据版本，做判断，jsx支持
+  if (version.startsWith('3')) {
+    const vue = require('@vitejs/plugin-vue');
+    extraPlugins.push(vue());
+  } else {
+    const { createVuePlugin } = require('vite-plugin-vue2');
+    extraPlugins.push(createVuePlugin());
+  }
 }
 if (process.env.framework === 'REACT') {
   const react = require('@vitejs/plugin-react');
@@ -31,6 +38,9 @@ module.exports = defineConfig({
     pageEntryPlugin(),
     ...extraPlugins,
   ],
+  server: {
+    host: '0.0.0.0',
+  },
   optimizeDeps: {
     include: optimizeDepsInclude,
   },
