@@ -4,8 +4,9 @@
 相关文章：[webpack项目接入Vite的通用方案介绍](https://sugarat.top/technology/learn/webapck2vite.html)
 
 包管理工具推荐使用[pnpm](https://pnpm.io/)
+
+TODO: 核心能力正在建设中
 ## Usage
-TODO: 能力建设中
 ### Installed
 ```sh
 npm install webpack-vite-serve -D
@@ -15,13 +16,12 @@ yarn add webpack-vite-serve -D
 pnpm add webpack-vite-serve -D
 ```
 
-### Run
-package.json
-
-devServer
+### Command Run
 ```sh
+# devServer
 wvs start [options]
 ```
+
 ```json
 {
   "scripts": {
@@ -34,6 +34,7 @@ wvs start [options]
 
 TODO: build 待支持
 ```sh
+# build
 wvs build [options]
 ```
 ```json
@@ -43,17 +44,22 @@ wvs build [options]
   }
 }
 ```
-## 可选参数
+### Options
 * -f,--framework：指定使用的业务框架
 * -c,--config: 手动指定webpack配置文件路径
 * -s,--spa：按照单页应用目录结构处理
 * -m,--mpa：按照多页应用目录结构处理
 
-## Supports - 支持进度
-### Feature
-TODO:...
+## Supports
+* [x] Vue
+* [x] React
+* [x] SPA
+* [x] MPA
+* [ ] build for production
+* [ ] merge userConfig
+* [ ] config [wp2vite](https://github.com/tnfe/wp2vite)
 
-### Demos
+## Demos
 * JS
   * [x] Vue2 SPA
   * [x] React SPA
@@ -65,7 +71,7 @@ TODO:...
   * [x] Vue MPA
   * [ ] React MPA
 
-### Build Local - 本地构建
+### Build Local
 
 使用pnpm
 ```sh
@@ -80,9 +86,10 @@ pnpm install
 构建
 ```sh
 pnpm build
+# or
+pnpm dev
 ```
-
-### Running - 运行示例
+### Run Demos
 注：Demo依赖本地的构建产物，需先参照上个步骤进行构建
 
 ```sh
@@ -109,7 +116,7 @@ npm run dev
 npm run dev:vite
 ```
 
-## Dev - 本地开发
+## Dev
 使用pnpm
 ```sh
 npm i -g pnpm
