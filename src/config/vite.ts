@@ -24,7 +24,7 @@ if (process.env.framework === 'REACT') {
   extraPlugins.push(...[react()]);
 }
 
-// 依赖预构建
+// 内置依赖预构建
 const optimizeDepsInclude = [
   'vue', 'vue-router', 'vuex', 'react', 'react-dom', 'react-router',
 ].filter((d) => moduleIsExist(d));

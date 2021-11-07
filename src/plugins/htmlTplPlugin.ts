@@ -1,7 +1,9 @@
 import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import type { PluginOption } from 'vite';
-import { getCWD, getReqURL } from '../utils';
+import {
+  getCWD, getEntryName, getReqURL, isMPA,
+} from '../utils';
 
 /**
  * 获取原始模板
@@ -10,11 +12,23 @@ function loadHtmlContent(reqPath) {
   // 兜底页面
   const pages = [path.resolve(__dirname, '../../public/index.html')];
 
-  // TODO:多页应用可以根据请求的path：reqPath 作进一步的判断
-
   // 单页/多页默认 public/index.html
   const tplPath = 'public/index.html';
   pages.unshift(path.resolve(getCWD(), tplPath));
+
+  // 多页应用可以根据请求的 路径 作进一步的判断
+  if (isMPA()) {
+    const entryName = getEntryName(reqPath);
+    if (entryName) {
+    // src/pages/${entryName}/${entryName}.html
+    // src/pages/${entryName}/index.html
+    // public/${entryName}.html
+      pages.unshift(path.resolve(getCWD(), `public/${entryName}.html`));
+      pages.unshift(path.resolve(getCWD(), `src/pages/${entryName}/index.html`));
+      pages.unshift(path.resolve(getCWD(), `src/pages/${entryName}/${entryName}.html`));
+    }
+  }
+  // TODO：根据框架的配置寻找
 
   const page = pages.find((v) => existsSync(v));
   return readFileSync(page, { encoding: 'utf-8' });

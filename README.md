@@ -6,6 +6,7 @@
 包管理工具推荐使用[pnpm](https://pnpm.io/)
 ## Usage
 TODO: 能力建设中
+### Installed
 ```sh
 npm install webpack-vite-serve -D
 # or
@@ -14,7 +15,13 @@ yarn add webpack-vite-serve -D
 pnpm add webpack-vite-serve -D
 ```
 
+### Run
 package.json
+
+devServer
+```sh
+wvs start [options]
+```
 ```json
 {
   "scripts": {
@@ -25,28 +32,37 @@ package.json
 }
 ```
 
-运行
+TODO: build 待支持
 ```sh
-npm run vite
-# or
-yarn vite
-# or
-pnpm vite
+wvs build [options]
+```
+```json
+{
+  "scripts": {
+    "build:vite": "wvs build -f vue -s",
+  }
+}
 ```
 ## 可选参数
 * -f,--framework：指定使用的业务框架
+* -c,--config: 手动指定webpack配置文件路径
+* -s,--spa：按照单页应用目录结构处理
+* -m,--mpa：按照多页应用目录结构处理
 
-## Demos
-### Supports - 支持进度
+## Supports - 支持进度
+### Feature
+TODO:...
+
+### Demos
 * JS
   * [x] Vue2 SPA
   * [x] React SPA
-  * [ ] Vue MPA
+  * [x] Vue MPA
   * [ ] React MPA
 * TS
   * [x] Vue3 SPA
   * [x] React SPA
-  * [ ] Vue MPA
+  * [x] Vue MPA
   * [ ] React MPA
 
 ### Build Local - 本地构建

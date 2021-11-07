@@ -1,9 +1,8 @@
 import { existsSync, readdirSync } from 'fs';
 import path from 'path';
-import { URL } from 'url';
 
 import type { PluginOption } from 'vite';
-import { getCWD } from '../utils';
+import { getCWD, getEntryName, isMPA } from '../utils';
 
 const resolved = (...p) => path.resolve(getCWD(), ...p);
 
@@ -22,18 +21,13 @@ const getEntryFullPath = (dirPath) => {
 };
 
 function getPageEntry(reqUrl) {
-  const { pathname } = new URL(reqUrl, 'http://localhost');
-
-  const isMPA = false;
-  // TODO:MPA 根据页面路由动态的处理
-  if (isMPA) {
-    pathname.split('/');
-    // 进一步的处理
+  if (isMPA()) {
+    const entryName = getEntryName(reqUrl);
+    return !!entryName || getEntryFullPath(`src/pages/${entryName}`);
   }
-
   // 其它场景跟MPA处理类似
 
-  // SPA
+  // 默认SPA
   const SPABase = 'src';
   return getEntryFullPath(SPABase);
 }
