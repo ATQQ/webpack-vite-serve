@@ -40,7 +40,7 @@ export function isSPA() {
  * 判断是否单页应用
  */
 export function isMPA() {
-  return process.env.MPA || false;
+  return !!process.env.MPA || false;
 }
 
 /**

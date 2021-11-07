@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import type { PluginOption } from 'vite';
 import {
-  getCWD, getEntryName, getReqURL, isMPA,
+  getCWD, getEntryName, isMPA,
 } from '../utils';
 
 /**
@@ -34,6 +34,11 @@ function loadHtmlContent(reqPath) {
   return readFileSync(page, { encoding: 'utf-8' });
 }
 
+function getEntryHtml() {
+  // TODO：根据多页应用自动生成
+  return 'public/index.html';
+}
+
 /**
  * 初始化模板内容（替换 <%varName%> 一些内容）
  */
@@ -41,6 +46,18 @@ function initTpl(tplStr:string, data = {}, ops?:{
   backup?:string
   matches?:RegExp[]
 }) {
+  // TODO:可以再此处获取webpack配置，做自动转换
+  // eslint-disable-next-line no-param-reassign
+  data = {
+    PUBLIC_URL: '.',
+    BASE_URL: './',
+    htmlWebpackPlugin: {
+      options: {
+        title: 'App',
+      },
+    },
+    ...data,
+  };
   const { backup = '', matches = [] } = ops || {};
   // match %Name% <%Name%>
   return [/<?%=?(.*)%>?/g].concat(matches).reduce((tpl, r) => tpl.replace(r, (_, $1) => {
@@ -53,15 +70,13 @@ function initTpl(tplStr:string, data = {}, ops?:{
 export default function HtmlTemplatePlugin(): PluginOption {
   return {
     name: 'wvs-html-tpl',
-    apply: 'serve',
     configureServer(server) {
       const { middlewares: app } = server;
       app.use(async (req, res, next) => {
-        const { pathname } = getReqURL(req);
         const htmlAccepts = ['text/html', 'application/xhtml+xml'];
         const isHtml = !!htmlAccepts.find((a) => req.headers?.accept?.includes(a));
         if (isHtml) {
-          const originHtml = loadHtmlContent(pathname);
+          const originHtml = loadHtmlContent(req.url);
           const html = await server.transformIndexHtml(req.url, originHtml, req.originalUrl);
           res.end(html);
           return;
@@ -71,16 +86,31 @@ export default function HtmlTemplatePlugin(): PluginOption {
     },
     transformIndexHtml(html) {
       // data可以传入模板中包含的一些变量
-      // TODO:可以再此处获取webpack配置，做自动转换
-      return initTpl(html, {
-        PUBLIC_URL: '.',
-        BASE_URL: './',
-        htmlWebpackPlugin: {
-          options: {
-            title: 'App',
+      return initTpl(html);
+    },
+    transform(code, id) {
+      if (!id.endsWith('.html')) {
+        return code;
+      }
+      return initTpl(code);
+    },
+    config(cfg, env) {
+      const { command } = env;
+      if (command === 'build') {
+        return {
+          build: {
+            rollupOptions: {
+              input: getEntryHtml(),
+              // TODO: build路径问题
+              output: {
+                dir: 'dist',
+              },
+            },
           },
-        },
-      });
+          publicDir: false,
+        };
+      }
+      return {};
     },
   };
 }

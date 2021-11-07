@@ -35,7 +35,6 @@ function getPageEntry(reqUrl) {
 export default function pageEntryPlugin(): PluginOption {
   return {
     name: 'wvs-page-entry',
-    apply: 'serve',
     transformIndexHtml(html, ctx) {
       const entry = getPageEntry(ctx.originalUrl);
       if (!entry) {

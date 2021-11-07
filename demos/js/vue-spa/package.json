@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "dev:vite": "wvs start -f vue",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "build:vite": "wvs build -f vue"
   },
   "dependencies": {
     "core-js": "^3.6.5",

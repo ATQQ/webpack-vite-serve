@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import chalk from 'chalk';
 import { Command } from 'commander';
-import { startCommand } from './command';
+import { buildCommand, startCommand } from './command';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkg = require('../package.json');
 
@@ -17,6 +17,14 @@ program.command('start')
   .option('-m, --mpa', 'as mpa application')
   .option('-f, --framework <type>', 'set project type [vue/react]')
   .action(startCommand);
+
+program.command('build')
+  .alias('s')
+  .option('-c, --config <filepath>', 'set webpack config path')
+  .option('-s, --spa', 'as spa application')
+  .option('-m, --mpa', 'as mpa application')
+  .option('-f, --framework <type>', 'set project type [vue/react]')
+  .action(buildCommand);
 
 program.command('hello')
   .action(() => {
