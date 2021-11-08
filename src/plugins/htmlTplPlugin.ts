@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import type { PluginOption } from 'vite';
 import {
-  getCWD, getEntryName, isMPA,
+  getCWD, getEntryName, isMPA, transformTpl,
 } from '../utils';
 
 /**
@@ -34,42 +34,10 @@ function loadHtmlContent(reqPath) {
   return readFileSync(page, { encoding: 'utf-8' });
 }
 
-function getEntryHtml() {
-  // TODO：根据多页应用自动生成
-  return 'public/index.html';
-}
-
-/**
- * 初始化模板内容（替换 <%varName%> 一些内容）
- */
-function initTpl(tplStr:string, data = {}, ops?:{
-  backup?:string
-  matches?:RegExp[]
-}) {
-  // TODO:可以再此处获取webpack配置，做自动转换
-  // eslint-disable-next-line no-param-reassign
-  data = {
-    PUBLIC_URL: '.',
-    BASE_URL: './',
-    htmlWebpackPlugin: {
-      options: {
-        title: 'App',
-      },
-    },
-    ...data,
-  };
-  const { backup = '', matches = [] } = ops || {};
-  // match %Name% <%Name%>
-  return [/<?%=?(.*)%>?/g].concat(matches).reduce((tpl, r) => tpl.replace(r, (_, $1) => {
-    const keys = $1.trim().split('.');
-    const v = keys.reduce((pre, k) => (pre instanceof Object ? pre[k] : pre), data);
-    return (v === null || v === undefined) ? backup : v;
-  }), tplStr);
-}
-
 export default function HtmlTemplatePlugin(): PluginOption {
   return {
     name: 'wvs-html-tpl',
+    apply: 'serve',
     configureServer(server) {
       const { middlewares: app } = server;
       app.use(async (req, res, next) => {
@@ -86,31 +54,7 @@ export default function HtmlTemplatePlugin(): PluginOption {
     },
     transformIndexHtml(html) {
       // data可以传入模板中包含的一些变量
-      return initTpl(html);
-    },
-    transform(code, id) {
-      if (!id.endsWith('.html')) {
-        return code;
-      }
-      return initTpl(code);
-    },
-    config(cfg, env) {
-      const { command } = env;
-      if (command === 'build') {
-        return {
-          build: {
-            rollupOptions: {
-              input: getEntryHtml(),
-              // TODO: build路径问题
-              output: {
-                dir: 'dist',
-              },
-            },
-          },
-          publicDir: false,
-        };
-      }
-      return {};
+      return transformTpl(html);
     },
   };
 }
