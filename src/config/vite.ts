@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable global-require */
 import path from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig, searchForWorkspaceRoot } from 'vite';
 import env from 'vite-plugin-env-compatible';
-import { htmlTemplatePlugin, pageEntryPlugin, buildPlugin } from '../plugins/index';
+import {
+  htmlTemplatePlugin, pageEntryPlugin, buildPlugin, configPlugin,
+} from '../plugins/index';
 import { getCWD, moduleIsExist } from '../utils';
 
 const extraPlugins = [];
@@ -31,6 +33,7 @@ const optimizeDepsInclude = [
 
 module.exports = defineConfig({
   plugins: [
+    configPlugin(),
     env({
       prefix: '',
     }),
@@ -41,6 +44,9 @@ module.exports = defineConfig({
   ],
   server: {
     host: '0.0.0.0',
+    fs: {
+      allow: [searchForWorkspaceRoot(getCWD())],
+    },
   },
   optimizeDeps: {
     include: optimizeDepsInclude,
