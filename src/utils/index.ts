@@ -5,6 +5,7 @@ import type { Connect } from 'vite/dist/node';
 import ejs from 'ejs';
 import { existsSync, readdirSync, readFileSync } from 'fs';
 import path from 'path';
+import { loadConfigFromFile, ConfigEnv } from 'vite';
 
 export function getCWD() {
   return process.cwd();
@@ -149,4 +150,11 @@ export function getMpaEntry(baseDir = 'src/pages') {
         entryHtml,
       };
     });
+}
+
+export function getUserConfig(configEnv:ConfigEnv) {
+  const configName = 'vite.config';
+  const suffix = ['ts', 'js', 'mjs', 'cjs'];
+  const configFile = suffix.map((s) => `${configName}.${s}`).find((s) => existsSync(s));
+  return loadConfigFromFile(configEnv, configFile);
 }

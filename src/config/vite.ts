@@ -3,7 +3,9 @@
 import path from 'path';
 import { defineConfig } from 'vite';
 import env from 'vite-plugin-env-compatible';
-import { htmlTemplatePlugin, pageEntryPlugin, buildPlugin } from '../plugins/index';
+import {
+  htmlTemplatePlugin, pageEntryPlugin, buildPlugin, configPlugin,
+} from '../plugins/index';
 import { getCWD, moduleIsExist } from '../utils';
 
 const extraPlugins = [];
@@ -31,6 +33,7 @@ const optimizeDepsInclude = [
 
 module.exports = defineConfig({
   plugins: [
+    configPlugin(),
     env({
       prefix: '',
     }),

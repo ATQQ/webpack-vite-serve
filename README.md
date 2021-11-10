@@ -53,8 +53,8 @@ wvs build [options]
 * [x] SPA
 * [x] MPA
 * [x] build for production
-* [ ] merge userConfig
-* [ ] config [wp2vite](https://github.com/tnfe/wp2vite)
+* [x] merge userConfig
+* [ ] config transform[wp2vite](https://github.com/tnfe/wp2vite)
 
 ## Demos
 * JS

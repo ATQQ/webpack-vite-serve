@@ -23,21 +23,20 @@ export default function BuildPlugin(): PluginOption {
     });
   }
 
-  const input = entry.reduce((pre, v) => {
-    const { entryName, entryHtml, entryJs } = v;
-    const html = getEntryHtml(resolved(entryHtml), path.join('/', entryJs));
-    const htmlEntryPath = resolved(path.parse(entryJs).dir, tempHtmlName);
-    // 创建临时文件
-    writeFileSync(htmlEntryPath, html);
-    // eslint-disable-next-line no-param-reassign
-    pre[entryName] = htmlEntryPath;
-    return pre;
-  }, {});
-
   return {
     name: 'wvs-build',
     apply: 'build',
     config() {
+      const input = entry.reduce((pre, v) => {
+        const { entryName, entryHtml, entryJs } = v;
+        const html = getEntryHtml(resolved(entryHtml), path.join('/', entryJs));
+        const htmlEntryPath = resolved(path.parse(entryJs).dir, tempHtmlName);
+        // 创建临时文件
+        writeFileSync(htmlEntryPath, html);
+        // eslint-disable-next-line no-param-reassign
+        pre[entryName] = htmlEntryPath;
+        return pre;
+      }, {});
       return {
         build: {
           rollupOptions: {
