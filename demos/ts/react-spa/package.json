@@ -16,6 +16,7 @@
     "dev": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
     "dev:vite": "wvs start -f react",
     "build": "react-scripts build",
+    "build:vite": "wvs build -f react",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
