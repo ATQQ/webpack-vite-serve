@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable global-require */
 import path from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig, searchForWorkspaceRoot } from 'vite';
 import env from 'vite-plugin-env-compatible';
 import {
   htmlTemplatePlugin, pageEntryPlugin, buildPlugin, configPlugin,
@@ -44,6 +44,9 @@ module.exports = defineConfig({
   ],
   server: {
     host: '0.0.0.0',
+    fs: {
+      allow: [searchForWorkspaceRoot(getCWD())],
+    },
   },
   optimizeDeps: {
     include: optimizeDepsInclude,

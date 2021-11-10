@@ -4,7 +4,7 @@ import { getEntryFullPath, getEntryName, isMPA } from '../utils';
 function getPageEntry(reqUrl) {
   if (isMPA()) {
     const entryName = getEntryName(reqUrl);
-    return !!entryName || getEntryFullPath(`src/pages/${entryName}`);
+    return !!entryName && getEntryFullPath(`src/pages/${entryName}`);
   }
   // 其它场景跟MPA处理类似
 
@@ -22,6 +22,7 @@ export default function pageEntryPlugin(): PluginOption {
       if (!entry) {
         return html;
       }
+
       return html.replace('</body>', `<script type="module" src="${entry}"></script>
         </body>
         `);
