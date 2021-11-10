@@ -133,16 +133,16 @@ export function getMpaEntry(baseDir = 'src/pages') {
     .map((v) => {
       const { entryName } = v;
       const entryHtml = [
-        // CLI兜底页面
-        path.resolve(__dirname, '../../public/index.html'),
-        // 应用兜底
-        resolved('public/index.html'),
-        // public/${entryName}.html
-        resolved(`public/${entryName}.html`),
-        // src/pages/${entryName}/index.html
-        resolved(`src/pages/${entryName}/index.html`),
         // src/pages/${entryName}/${entryName}.html
         resolved(`src/pages/${entryName}/${entryName}.html`),
+        // src/pages/${entryName}/index.html
+        resolved(`src/pages/${entryName}/index.html`),
+        // public/${entryName}.html
+        resolved(`public/${entryName}.html`),
+        // 应用兜底
+        resolved('public/index.html'),
+        // CLI兜底页面
+        path.resolve(__dirname, '../../public/index.html'),
       ].find((html) => existsSync(html));
       return {
         ...v,

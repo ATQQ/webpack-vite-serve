@@ -1,49 +1,62 @@
-// import { existsSync, readFileSync } from 'fs';
-// import path from 'path';
-import { unlinkSync, rmdirSync, mkdirSync } from 'fs';
+import {
+  rmdirSync, writeFileSync, readFileSync, unlinkSync,
+} from 'fs';
 import path from 'path';
 import type { PluginOption } from 'vite';
-import { getCWD, isMPA } from '../utils';
-// import {
-//   getCWD, getEntryName, isMPA,
-// } from '../utils';
+import {
+  getEntryFullPath, getEntryHtml, getMpaEntry, isMPA, resolved,
+} from '../utils';
 
-// function getHtmlEntryList() {
-//   return 'public/index.html';
-// }
-const resolved = (...p:string[]) => path.resolve(getCWD(), ...p);
-const TEMP_PATH = 'wvs_temp';
-
+const tempHtmlName = '.wvs_temp_index.html';
 export default function BuildPlugin(): PluginOption {
-  // 构建完成
-  process.on('exit', () => {
-    // unlinkSync();
-
-    // rmdirSync();
-  });
+  const entry = [];
 
   // 构建开始前配置
-  mkdirSync(resolved(TEMP_PATH));
-  const buildInput:{[key:string]:string} = {};
   if (isMPA()) {
-    
+    entry.push(...getMpaEntry());
   } else {
-    buildInput.index = `${TEMP_PATH}/index.html`;
+    // 单页应用
+    entry.push({
+      entryName: 'index',
+      entryHtml: 'public/index.html',
+      entryJs: getEntryFullPath('src'),
+    });
   }
+
+  const input = entry.reduce((pre, v) => {
+    const { entryName, entryHtml, entryJs } = v;
+    const html = getEntryHtml(resolved(entryHtml), path.join('/', entryJs));
+    const htmlEntryPath = resolved(path.parse(entryJs).dir, tempHtmlName);
+    // 创建临时文件
+    writeFileSync(htmlEntryPath, html);
+    // eslint-disable-next-line no-param-reassign
+    pre[entryName] = htmlEntryPath;
+    return pre;
+  }, {});
+
   return {
     name: 'wvs-build',
     apply: 'build',
-    config(cfg, env) {
+    config() {
       return {
         build: {
           rollupOptions: {
-            input: {
-              index: path.resolve(getCWD(), '.wvs_temp/index.html'),
-              second: path.resolve(getCWD(), '.wvs_temp/second.html'),
-            },
+            input,
           },
         },
       };
+    },
+    // 构建完成后
+    closeBundle() {
+      // 目录调整
+      entry.forEach((e) => {
+        const { entryName, entryJs } = e;
+        const outputHtmlPath = resolved('dist', path.parse(entryJs).dir, tempHtmlName);
+        writeFileSync(resolved('dist', `${entryName}.html`), readFileSync(outputHtmlPath));
+        unlinkSync(resolved(path.parse(entryJs).dir, tempHtmlName));
+      });
+      // 移除临时资源
+      rmdirSync(resolved('dist', 'src'), { recursive: true });
     },
   };
 }
