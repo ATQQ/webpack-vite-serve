@@ -1,11 +1,9 @@
 # webpack-vite-serve
-为webpack项目提供开发环境下使用Vite启动的能力
+为webpack项目提供一键接入Vite的能力
 
 相关文章：[webpack项目接入Vite的通用方案介绍](https://sugarat.top/technology/learn/webapck2vite.html)
 
 包管理工具推荐使用[pnpm](https://pnpm.io/)
-
-TODO: 核心能力正在建设中
 ## Usage
 ### Installed
 ```sh
@@ -32,7 +30,6 @@ wvs start [options]
 }
 ```
 
-TODO: build 待支持
 ```sh
 # build
 wvs build [options]
@@ -55,7 +52,7 @@ wvs build [options]
 * [x] React
 * [x] SPA
 * [x] MPA
-* [ ] build for production
+* [x] build for production
 * [ ] merge userConfig
 * [ ] config [wp2vite](https://github.com/tnfe/wp2vite)
 
