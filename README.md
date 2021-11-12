@@ -43,7 +43,7 @@ wvs build [options]
 ```
 ### Options
 * [x] -f,--framework：指定使用的业务框架 (`vue`，`react`)
-* [ ] -s,--spa：按照单页应用目录结构处理 `src/${entryJs}`
+* [x] -s,--spa：按照单页应用目录结构处理 `src/${entryJs}`
 * [x] -m,--mpa：按照多页应用目录结构处理 `src/pages/${entryName}/${entryJs}`
 * [ ] -c,--config: 手动指定webpack配置文件路径
 
