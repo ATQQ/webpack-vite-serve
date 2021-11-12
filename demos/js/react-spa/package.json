@@ -9,7 +9,7 @@
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
-    "webpack-vite-serve": "link:../../.."
+    "webpack-vite-serve": "^0.0.9"
   },
   "scripts": {
     "dev": "SKIP_PREFLIGHT_CHECK=true react-scripts start",

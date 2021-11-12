@@ -42,11 +42,12 @@ wvs build [options]
 }
 ```
 ### Options
-* -f,--framework：指定使用的业务框架
-* -c,--config: 手动指定webpack配置文件路径
-* -s,--spa：按照单页应用目录结构处理
-* -m,--mpa：按照多页应用目录结构处理
+* [x] -f,--framework：指定使用的业务框架 (`vue`，`react`)
+* [ ] -s,--spa：按照单页应用目录结构处理 `src/${entryJs}`
+* [x] -m,--mpa：按照多页应用目录结构处理 `src/pages/${entryName}/${entryJs}`
+* [ ] -c,--config: 手动指定webpack配置文件路径
 
+其中`entryJs`匹配规则`/(index|main)\.[jt]sx?$/`
 ## Supports
 * [x] Vue
 * [x] React
@@ -55,6 +56,7 @@ wvs build [options]
 * [x] build for production
 * [x] merge userConfig
 * [ ] config transform[wp2vite](https://github.com/tnfe/wp2vite)
+* [ ] 通过插件提供配置`htmlTemplate`与`entryJs`的能力
 
 ## Demos
 * JS
@@ -68,26 +70,7 @@ wvs build [options]
   * [x] Vue MPA
   * [ ] React MPA
 
-### Build Local
-
-使用pnpm
-```sh
-npm i -g pnpm
-```
-
-安装依赖
-```sh
-pnpm install
-```
-
-构建
-```sh
-pnpm build
-# or
-pnpm dev
-```
 ### Run Demos
-注：Demo依赖本地的构建产物，需先参照上个步骤进行构建
 
 ```sh
 # 1
@@ -113,7 +96,8 @@ npm run dev
 npm run dev:vite
 ```
 
-## Dev
+## Local
+### Dev
 使用pnpm
 ```sh
 npm i -g pnpm
@@ -124,12 +108,12 @@ npm i -g pnpm
 pnpm install
 ```
 
-启动
+编译
 ```sh
 pnpm dev
 ```
 
-激活指令
+激活指令（全局）
 ```sh
 npm link
 ```
@@ -137,4 +121,23 @@ npm link
 测试指令
 ```sh
 wvs hello
+```
+
+### Build
+
+使用pnpm
+```sh
+npm i -g pnpm
+```
+
+安装依赖
+```sh
+pnpm install
+```
+
+构建
+```sh
+pnpm build
+# or
+pnpm dev
 ```
