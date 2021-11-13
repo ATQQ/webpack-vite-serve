@@ -3,5 +3,6 @@ export interface CommandOptions{
     spa?:boolean
     mpa?:boolean
     debug?:string|boolean
+    wp2vite?:boolean
     framework?:string
 }

@@ -3,7 +3,7 @@ import { CommandOptions } from '../types';
 
 export default function buildCommand(options:CommandOptions) {
   const {
-    framework = '', mpa, spa, debug,
+    framework = '', mpa, spa, debug, wp2vite,
   } = options;
 
   // 不支持两个参数同时设定
@@ -12,6 +12,8 @@ export default function buildCommand(options:CommandOptions) {
   }
   process.env.SPA = spa ? 'true' : '';
   process.env.MPA = mpa ? 'true' : '';
+  process.env.WP2VITE = wp2vite ? 'true' : '';
+
   process.env.framework = framework.toUpperCase();
 
   const configPath = require.resolve('./../config/vite.js');

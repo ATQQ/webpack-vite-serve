@@ -16,6 +16,7 @@ program.command('start')
   .option('-s, --spa', 'as spa application')
   .option('-m, --mpa', 'as mpa application')
   .option('-d, --debug [feat]', 'show debug logs')
+  .option('-w, --wp2vite', 'use wp2vite transform webpack config')
   .option('-f, --framework <type>', 'set project type [vue/react]')
   .action(startCommand);
 
@@ -25,6 +26,7 @@ program.command('build')
   .option('-s, --spa', 'as spa application')
   .option('-m, --mpa', 'as mpa application')
   .option('-d, --debug [feat]', 'show debug logs')
+  .option('-w, --wp2vite', 'use wp2vite transform webpack config')
   .option('-f, --framework <type>', 'set project type [vue/react]')
   .action(buildCommand);
 
