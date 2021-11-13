@@ -4,7 +4,7 @@ import path from 'path';
 import { defineConfig, searchForWorkspaceRoot } from 'vite';
 import env from 'vite-plugin-env-compatible';
 import {
-  htmlTemplatePlugin, pageEntryPlugin, buildPlugin, configPlugin,
+  htmlTemplatePlugin, pageEntryPlugin, buildPlugin, userConfigPlugin, wp2vitePlugin,
 } from '../plugins/index';
 import { getCWD, moduleIsExist } from '../utils';
 
@@ -26,6 +26,11 @@ if (process.env.framework === 'REACT') {
   extraPlugins.push(...[react()]);
 }
 
+// 使用wp2vite自动转换webpack配置
+if (process.env.WP2VITE) {
+  extraPlugins.push(wp2vitePlugin());
+}
+
 // 内置依赖预构建
 const optimizeDepsInclude = [
   'vue', 'vue-router', 'vuex', 'react', 'react-dom', 'react-router',
@@ -33,7 +38,8 @@ const optimizeDepsInclude = [
 
 module.exports = defineConfig({
   plugins: [
-    configPlugin(),
+    // 合并用户配置
+    userConfigPlugin(),
     env({
       prefix: '',
     }),
@@ -55,6 +61,14 @@ module.exports = defineConfig({
     alias: {
       // 兜底
       '@': path.resolve(getCWD(), 'src'),
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        // 支持内联 JavaScript
+        javascriptEnabled: true,
+      },
     },
   },
 });

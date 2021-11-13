@@ -42,12 +42,46 @@ wvs build [options]
 }
 ```
 ### Options
-* [x] -f,--framework：指定使用的业务框架 (`vue`，`react`)
+* [x] -f,--framework `<type>`：指定使用的业务框架 (`vue`，`react`)
 * [x] -s,--spa：按照单页应用目录结构处理 `src/${entryJs}`
 * [x] -m,--mpa：按照多页应用目录结构处理 `src/pages/${entryName}/${entryJs}`
+* [x] -d,--debug `[feat]`：打印debug信息
+* [x] -w,--wp2vite：use [wp2vite](https://github.com/tnfe/wp2vite) 自动转换webpack文件
 * [ ] -c,--config: 手动指定webpack配置文件路径
 
-其中`entryJs`匹配规则`/(index|main)\.[jt]sx?$/`
+其中`entryJs`匹配命名规则`/(index|main)\.[jt]sx?$/`
+## Agreement
+工程目录约定
+### SPA
+| Pages Dir |    Html Template    |     Entry Js     |
+| :-------: | :-----------------: | :--------------: |
+|   `src`   | `public/index.html` | `src/${entryJs}` |
+
+```sh
+* public
+  * index.html
+* src
+  * main.ts
+```
+### MPA
+|  Pages Dir  |              Html Template               |              Entry Js               |
+| :---------: | :--------------------------------------: | :---------------------------------: |
+| `src/pages` | `src/pages/${pageName}/${pageName}.html` | `src/pages/${entryName}/${entryJs}` |
+|             |    `src/pages/${pageName}/index.html`    |                  -                  |
+|             |           `public/index.html`            |                  -                  |
+
+```sh
+* public
+  * index.html
+* src
+  * pages
+    * pageName1
+      * main.js
+      * pageName.html
+    * pageName2
+      * index.ts
+      * index.html
+```
 ## Supports
 * [x] Vue
 * [x] React
@@ -55,7 +89,7 @@ wvs build [options]
 * [x] MPA
 * [x] build for production
 * [x] merge userConfig
-* [ ] config transform[wp2vite](https://github.com/tnfe/wp2vite)
+* [x] config transform use [wp2vite](https://github.com/tnfe/wp2vite) - 存在一些小小问题，准备PR解决
 * [ ] 通过插件提供配置`htmlTemplate`与`entryJs`的能力
 
 ## Demos

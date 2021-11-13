@@ -27,6 +27,9 @@
         "import/no-unresolved": "off",
         "no-console": "off",
         "prefer-rest-params": "off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "import/no-dynamic-require": "off",
+        "global-require": "off",
+        "@typescript-eslint/no-var-requires": "off"
     }
 }

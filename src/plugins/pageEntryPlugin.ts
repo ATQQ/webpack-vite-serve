@@ -1,4 +1,5 @@
 import type { PluginOption } from 'vite';
+import path from 'path';
 import { getEntryFullPath, getEntryName, isMPA } from '../utils';
 
 function getPageEntry(reqUrl) {
@@ -22,8 +23,10 @@ export default function pageEntryPlugin(): PluginOption {
       if (!entry) {
         return html;
       }
-
-      return html.replace('</body>', `<script type="module" src="${entry}"></script>
+      // 添加 / ,避免非一级路由查找文件错误
+      // case场景：/index/second => index/src/main
+      // right：/index/second => src/main
+      return html.replace('</body>', `<script type="module" src="${path.join('/', entry)}"></script>
         </body>
         `);
     },

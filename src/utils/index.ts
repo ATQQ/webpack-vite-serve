@@ -152,9 +152,12 @@ export function getMpaEntry(baseDir = 'src/pages') {
     });
 }
 
-export function getUserConfig(configEnv:ConfigEnv) {
+export function getUserConfig(configEnv:ConfigEnv, suffix = '') {
   const configName = 'vite.config';
-  const suffix = ['ts', 'js', 'mjs', 'cjs'];
-  const configFile = suffix.map((s) => `${configName}.${s}`).find((s) => existsSync(s));
+  const _suffix = ['ts', 'js', 'mjs', 'cjs'];
+  if (suffix) {
+    _suffix.unshift(suffix);
+  }
+  const configFile = _suffix.map((s) => `${configName}.${s}`).find((s) => existsSync(s));
   return loadConfigFromFile(configEnv, configFile);
 }
