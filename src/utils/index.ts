@@ -73,7 +73,7 @@ export function getEntryFullPath(dirPath) {
       entryName.lastIndex = 0;
       return v.isFile() && entryName.test(v.name);
     });
-  return entryNames.length > 0 ? path.join('/', dirPath, entryNames[0].name) : false;
+  return entryNames.length > 0 ? path.join(dirPath, entryNames[0].name) : false;
 }
 
 /**
