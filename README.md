@@ -47,7 +47,39 @@ wvs build [options]
 * [x] -m,--mpa：按照多页应用目录结构处理 `src/pages/${entryName}/${entryJs}`
 * [ ] -c,--config: 手动指定webpack配置文件路径
 
-其中`entryJs`匹配规则`/(index|main)\.[jt]sx?$/`
+其中`entryJs`匹配命名规则`/(index|main)\.[jt]sx?$/`
+## Agreement
+工程目录约定
+### SPA
+| Pages Dir |    Html Template    |     Entry Js     |
+| :-------: | :-----------------: | :--------------: |
+|   `src`   | `public/index.html` | `src/${entryJs}` |
+
+```sh
+* public
+  * index.html
+* src
+  * main.ts
+```
+### MPA
+|  Pages Dir  |              Html Template               |              Entry Js               |
+| :---------: | :--------------------------------------: | :---------------------------------: |
+| `src/pages` | `src/pages/${pageName}/${pageName}.html` | `src/pages/${entryName}/${entryJs}` |
+|             |    `src/pages/${pageName}/index.html`    |                  -                  |
+|             |           `public/index.html`            |                  -                  |
+
+```sh
+* public
+  * index.html
+* src
+  * pages
+    * pageName1
+      * main.js
+      * pageName.html
+    * pageName2
+      * index.ts
+      * index.html
+```
 ## Supports
 * [x] Vue
 * [x] React
