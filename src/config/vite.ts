@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable global-require */
-import path from 'path';
 import { defineConfig, searchForWorkspaceRoot } from 'vite';
 import env from 'vite-plugin-env-compatible';
 import {
   htmlTemplatePlugin, pageEntryPlugin, buildPlugin, userConfigPlugin, wp2vitePlugin,
 } from '../plugins/index';
-import { getCWD, moduleIsExist } from '../utils';
+import { getCWD, moduleIsExist, resolved } from '../utils';
 
 const extraPlugins = [];
 
@@ -60,7 +59,7 @@ module.exports = defineConfig({
   resolve: {
     alias: {
       // 兜底
-      '@': path.resolve(getCWD(), 'src'),
+      '@': resolved('src'),
     },
   },
   css: {

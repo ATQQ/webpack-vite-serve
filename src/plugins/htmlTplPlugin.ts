@@ -2,19 +2,18 @@ import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import type { PluginOption } from 'vite';
 import {
-  getCWD, getEntryName, isMPA, transformTpl,
+  getEntryName, isMPA, resolved, transformTpl,
 } from '../utils';
 
 /**
  * 获取原始模板
  */
-function loadHtmlContent(reqPath) {
+function loadHtmlContent(reqPath:string) {
   // 兜底页面
   const pages = [path.resolve(__dirname, '../../public/index.html')];
 
   // 单页/多页默认 public/index.html
-  const tplPath = 'public/index.html';
-  pages.unshift(path.resolve(getCWD(), tplPath));
+  pages.unshift(resolved('public/index.html'));
 
   // 多页应用可以根据请求的 路径 作进一步的判断
   if (isMPA()) {
@@ -23,9 +22,9 @@ function loadHtmlContent(reqPath) {
     // src/pages/${entryName}/${entryName}.html
     // src/pages/${entryName}/index.html
     // public/${entryName}.html
-      pages.unshift(path.resolve(getCWD(), `public/${entryName}.html`));
-      pages.unshift(path.resolve(getCWD(), `src/pages/${entryName}/index.html`));
-      pages.unshift(path.resolve(getCWD(), `src/pages/${entryName}/${entryName}.html`));
+      pages.unshift(resolved(`public/${entryName}.html`));
+      pages.unshift(resolved(`src/pages/${entryName}/index.html`));
+      pages.unshift(resolved(`src/pages/${entryName}/${entryName}.html`));
     }
   }
   // TODO：根据框架的配置寻找
