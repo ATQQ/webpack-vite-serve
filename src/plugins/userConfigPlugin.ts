@@ -7,7 +7,7 @@ export default function UserConfigPlugin(): PluginOption {
     async config(cfg, env) {
       const userConfig = await getUserConfig(env);
       return {
-        ...userConfig.config,
+        ...userConfig?.config,
       };
     },
   };
