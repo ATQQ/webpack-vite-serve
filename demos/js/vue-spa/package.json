@@ -13,7 +13,7 @@
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0",
-    "webpack-vite-serve": "^0.0.9"
+    "webpack-vite-serve": "^0.0.12"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
