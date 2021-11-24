@@ -29,7 +29,8 @@ export default function startCommand(options:CommandOptions) {
       params.push(debug);
     }
   }
-
+  process.env.mode = 'development';
+  process.env.command = 'serve';
   const viteService = spawn('vite', params, {
     cwd: process.cwd(),
     stdio: 'inherit',
