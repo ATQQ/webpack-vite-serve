@@ -1,7 +1,6 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 import { URL } from 'url';
-import type { Connect } from 'vite/dist/node';
 import ejs from 'ejs';
 import { existsSync, readdirSync, readFileSync } from 'fs';
 import path from 'path';
@@ -11,8 +10,8 @@ export function getCWD() {
   return process.cwd();
 }
 
-export function getReqURL(request:Connect.IncomingMessage) {
-  return new URL(request.url, `http://${request.headers.host}`);
+export function parseURL(url:string) {
+  return new URL(url, 'http://localhost');
 }
 
 /**
@@ -45,22 +44,19 @@ export function isMPA() {
 }
 
 /**
- * 根据资源路径，动态获取entryName
+ * 根据资源路径，动态获取pageName
  * @param reqUrl 资源路径
  * @@param cfg webpack的配置
  */
-export function getEntryName(reqUrl:string, cfg?:any) {
+export function getPageName(reqUrl:string, cfg?:any) {
   // TODO：兼容webpack配置 historyRewrites
   const { pathname } = new URL(reqUrl, 'http://localhost');
   const paths = pathname.split('/').filter((v) => !!v);
   const entryName = paths.find((p) => existsSync(path.join(getCWD(), 'src/pages', p)));
-  if (!entryName) {
-    console.log(pathname, 'not match any entry');
-  }
   return entryName || '';
 }
 
-export const resolved = (...p) => path.resolve(getCWD(), ...p);
+export const resolved = (...p) => path.join(getCWD(), ...p);
 
 export function getEntryFullPath(dirPath) {
   if (!existsSync(resolved(dirPath))) {
@@ -122,7 +118,7 @@ export function getEntryHtml(tplPath:string, entry:string, data?:any) {
 /**
  * 获取多页应用的构建配置
  */
-export function getMpaEntry(baseDir = 'src/pages') {
+export function getMpaPageEntry(baseDir = 'src/pages') {
   // 获取所有的EntryName
   const entryNameList = readdirSync(resolved(baseDir), { withFileTypes: true })
     .filter((v) => v.isDirectory())
@@ -160,4 +156,29 @@ export function getUserConfig(configEnv:ConfigEnv, suffix = '') {
   }
   const configFile = _suffix.map((s) => `${configName}.${s}`).find((s) => existsSync(s));
   return loadConfigFromFile(configEnv, configFile);
+}
+
+/**
+* 获取原始模板
+*/
+export function loadPageHtml(pageName:string) {
+  // 兜底页面
+  const pages = [path.resolve(__dirname, '../../public/index.html')];
+
+  // 单页/多页默认 public/index.html
+  pages.unshift(resolved('public/index.html'));
+
+  // 多页应用可以根据请求的 路径 作进一步的判断
+  if (isMPA()) {
+    // src/pages/${entryName}/${entryName}.html
+    // src/pages/${entryName}/index.html
+    // public/${entryName}.html
+    pages.unshift(resolved(`public/${pageName}.html`));
+    pages.unshift(resolved(`src/pages/${pageName}/index.html`));
+    pages.unshift(resolved(`src/pages/${pageName}/${pageName}.html`));
+  }
+  // TODO：根据框架的配置寻找
+
+  const page = pages.find((v) => existsSync(v));
+  return readFileSync(page, { encoding: 'utf-8' });
 }

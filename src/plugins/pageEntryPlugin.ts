@@ -1,11 +1,11 @@
 import type { PluginOption } from 'vite';
 import path from 'path';
-import { getEntryFullPath, getEntryName, isMPA } from '../utils';
+import { getEntryFullPath, getPageName, isMPA } from '../utils';
 
 function getPageEntry(reqUrl) {
   if (isMPA()) {
-    const entryName = getEntryName(reqUrl);
-    return !!entryName && getEntryFullPath(`src/pages/${entryName}`);
+    const pageName = getPageName(reqUrl);
+    return !!pageName && getEntryFullPath(`src/pages/${pageName}`);
   }
   // 其它场景跟MPA处理类似
 

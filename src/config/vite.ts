@@ -65,7 +65,7 @@ module.exports = defineConfig(async () => {
     resolve: {
       alias: {
         // 兜底
-        '@': resolved('src'),
+        '@/': `${resolved('src/')}`,
       },
     },
     css: {
