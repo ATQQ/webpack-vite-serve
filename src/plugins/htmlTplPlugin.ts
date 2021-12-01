@@ -4,7 +4,10 @@ import {
 } from '../utils';
 
 export default function HtmlTemplatePlugin(): PluginOption {
-  const pages = getMpaPageEntry();
+  let pages = [];
+  if (isMPA()) {
+    pages = getMpaPageEntry();
+  }
   return {
     name: 'wvs-html-tpl',
     apply: 'serve',
