@@ -1,6 +1,6 @@
 {
   "name": "webpack-vite-serve",
-  "version": "0.0.13",
+  "version": "0.0.14-beta.0",
   "description": "为webpack项目提供一键接入Vite的能力",
   "main": "dist/index.js",
   "bin": {
@@ -10,10 +10,10 @@
     "dev": "tsc -w -p .",
     "build": "rimraf dist && tsc -p .",
     "prepublish": "npm run build",
-    "up:major":"npm version major",
-    "up:minor":"npm version minor",
-    "up:patch":"npm version patch",
-    "up:beta":"npm version prerelease --preid=beta",
+    "up:major": "npm version major",
+    "up:minor": "npm version minor",
+    "up:patch": "npm version patch",
+    "up:beta": "npm version prerelease --preid=beta",
     "publish:beta": "npm publish --tag beta"
   },
   "repository": {
