@@ -9,7 +9,12 @@
   "scripts": {
     "dev": "tsc -w -p .",
     "build": "rimraf dist && tsc -p .",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "up:major":"npm version major",
+    "up:minor":"npm version minor",
+    "up:patch":"npm version patch",
+    "up:beta":"npm version prerelease --preid=beta",
+    "publish:beta": "npm publish --tag beta"
   },
   "repository": {
     "type": "git",
