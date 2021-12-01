@@ -29,7 +29,8 @@ export default function buildCommand(options:CommandOptions) {
       params.push(debug);
     }
   }
-
+  process.env.mode = 'production';
+  process.env.command = 'build';
   const viteService = spawn('vite', params, {
     cwd: process.cwd(),
     stdio: 'inherit',

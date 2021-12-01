@@ -4,7 +4,7 @@ import {
 import path from 'path';
 import type { PluginOption, ResolvedConfig } from 'vite';
 import {
-  getEntryFullPath, getEntryHtml, getMpaEntry, isMPA, resolved,
+  getEntryFullPath, getEntryHtml, getMpaPageEntry, isMPA, resolved,
 } from '../utils';
 
 const tempHtmlName = '.wvs_temp_index.html';
@@ -13,7 +13,7 @@ export default function BuildPlugin(): PluginOption {
 
   // 构建开始前配置entry
   if (isMPA()) {
-    entry.push(...getMpaEntry());
+    entry.push(...getMpaPageEntry());
   } else {
     // 单页应用
     entry.push({
@@ -33,7 +33,7 @@ export default function BuildPlugin(): PluginOption {
     config() {
       const input = entry.reduce((pre, v) => {
         const { entryName, entryHtml, entryJs } = v;
-        const html = getEntryHtml(resolved(entryHtml), path.join('/', entryJs));
+        const html = getEntryHtml(entryHtml, path.join('/', entryJs));
         const htmlEntryPath = resolved(path.parse(entryJs).dir, tempHtmlName);
         // 存储内容
         htmlContentMap.set(htmlEntryPath, html);
