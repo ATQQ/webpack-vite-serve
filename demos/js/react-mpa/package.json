@@ -9,7 +9,7 @@
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
-    "webpack-vite-serve": "^0.0.14-beta.0"
+    "webpack-vite-serve": "^0.1.1-beta.3"
   },
   "scripts": {
     "dev:vite": "wvs start -f react --mpa",

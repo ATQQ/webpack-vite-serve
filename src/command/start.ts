@@ -1,4 +1,5 @@
 import spawn from 'cross-spawn';
+import path from 'path';
 import { CommandOptions } from '../types';
 
 export default function startCommand(options:CommandOptions) {
@@ -16,7 +17,7 @@ export default function startCommand(options:CommandOptions) {
 
   process.env.framework = framework.toUpperCase();
 
-  const configPath = require.resolve('./../config/vite.js');
+  const configPath = path.resolve(__dirname, './config/vite.js');
   const params = ['--config', configPath];
 
   if (debug) {
