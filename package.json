@@ -7,8 +7,8 @@
     "wvs": "./dist/bin.js"
   },
   "scripts": {
-    "dev": "tsc -w -p .",
-    "build": "rimraf dist && tsc -p .",
+    "dev": "tsup --watch",
+    "build": "rimraf dist && tsup --minify",
     "prepublish": "npm run build",
     "up:major": "npm version major",
     "up:minor": "npm version minor",
@@ -34,10 +34,10 @@
   },
   "homepage": "https://github.com/ATQQ/webpack-vite-serve#readme",
   "dependencies": {
-    "@vitejs/plugin-react": "^1.0.5",
-    "@vitejs/plugin-vue": "^1.9.3",
+    "@vitejs/plugin-react": "^1.1.0",
+    "@vitejs/plugin-vue": "^1.10.1",
     "chalk": "^4.1.2",
-    "commander": "^8.2.0",
+    "commander": "^8.3.0",
     "cross-spawn": "^7.0.3",
     "ejs": "^3.1.6",
     "inquirer": "^8.2.0",
@@ -48,13 +48,14 @@
   },
   "devDependencies": {
     "@types/ejs": "^3.1.0",
-    "@types/node": "^16.11.1",
-    "@typescript-eslint/eslint-plugin": "^5.1.0",
-    "@typescript-eslint/parser": "^5.1.0",
-    "eslint": "^8.0.1",
+    "@types/node": "^16.11.11",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-import": "^2.25.3",
     "rimraf": "^3.0.2",
-    "typescript": "^4.4.4"
+    "tsup": "^5.10.0",
+    "typescript": "^4.5.2"
   }
 }
