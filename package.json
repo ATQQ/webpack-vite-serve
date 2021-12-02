@@ -51,6 +51,7 @@
     "@types/node": "^16.11.11",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
+    "esbuild-plugin-public-directory": "^0.0.4",
     "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.25.3",

@@ -30,6 +30,7 @@
         "import/prefer-default-export": "off",
         "import/no-dynamic-require": "off",
         "global-require": "off",
-        "@typescript-eslint/no-var-requires": "off"
+        "@typescript-eslint/no-var-requires": "off",
+        "import/no-extraneous-dependencies":"off"
     }
 }

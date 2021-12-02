@@ -11,6 +11,7 @@ specifiers:
   commander: ^8.3.0
   cross-spawn: ^7.0.3
   ejs: ^3.1.6
+  esbuild-plugin-public-directory: ^0.0.4
   eslint: ^8.3.0
   eslint-config-airbnb-base: ^14.2.1
   eslint-plugin-import: ^2.25.3
@@ -41,6 +42,7 @@ devDependencies:
   '@types/node': registry.npmmirror.com/@types/node/16.11.11
   '@typescript-eslint/eslint-plugin': registry.npmmirror.com/@typescript-eslint/eslint-plugin/5.5.0_2a935f58a3cc0b0f42856ccf18d8367f
   '@typescript-eslint/parser': registry.npmmirror.com/@typescript-eslint/parser/5.5.0_eslint@8.3.0+typescript@4.5.2
+  esbuild-plugin-public-directory: registry.npmmirror.com/esbuild-plugin-public-directory/0.0.4
   eslint: registry.npmmirror.com/eslint/8.3.0
   eslint-config-airbnb-base: registry.npmmirror.com/eslint-config-airbnb-base/14.2.1_a32f4f7b9ceb1e357b5ea9f682f0210a
   eslint-plugin-import: registry.npmmirror.com/eslint-plugin-import/2.25.3_eslint@8.3.0
@@ -1196,6 +1198,17 @@ packages:
       rimraf: registry.nlark.com/rimraf/3.0.2
     dev: true
 
+  registry.nlark.com/fs-extra/10.0.0:
+    resolution: {integrity: sha1-n/YbZV3eU/s0qC34S7IUzoAuF8E=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/fs-extra/download/fs-extra-10.0.0.tgz}
+    name: fs-extra
+    version: 10.0.0
+    engines: {node: '>=12'}
+    dependencies:
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.8
+      jsonfile: registry.nlark.com/jsonfile/6.1.0
+      universalify: registry.nlark.com/universalify/2.0.0
+    dev: true
+
   registry.nlark.com/fs-extra/9.1.0:
     resolution: {integrity: sha1-WVRGDHZKjaIJS6NVS/g55rmnyG0=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/fs-extra/download/fs-extra-9.1.0.tgz}
     name: fs-extra
@@ -1696,7 +1709,6 @@ packages:
       universalify: registry.nlark.com/universalify/2.0.0
     optionalDependencies:
       graceful-fs: registry.npmmirror.com/graceful-fs/4.2.8
-    dev: false
 
   registry.nlark.com/levn/0.4.1:
     resolution: {integrity: sha1-rkViwAdHO5MqYgDUAyaN0v/8at4=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/levn/download/levn-0.4.1.tgz}
@@ -2533,7 +2545,6 @@ packages:
     name: universalify
     version: 2.0.0
     engines: {node: '>= 10.0.0'}
-    dev: false
 
   registry.nlark.com/uri-js/4.4.1:
     resolution: {integrity: sha1-mxpSWVIlhZ5V9mnZKPiMbFfyp34=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/uri-js/download/uri-js-4.4.1.tgz}
@@ -3510,7 +3521,7 @@ packages:
     dev: false
 
   registry.npmmirror.com/chokidar/3.5.2:
-    resolution: {integrity: sha1-26OXb8rbAW9m/TZQIdkWANAcHnU=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chokidar/download/chokidar-3.5.2.tgz?cache=0&sync_timestamp=1636462221288&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fchokidar%2Fdownload%2Fchokidar-3.5.2.tgz}
+    resolution: {integrity: sha1-26OXb8rbAW9m/TZQIdkWANAcHnU=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chokidar/download/chokidar-3.5.2.tgz}
     name: chokidar
     version: 3.5.2
     engines: {node: '>= 8.10.0'}
@@ -3761,6 +3772,18 @@ packages:
     os: [openbsd]
     requiresBuild: true
     optional: true
+
+  registry.npmmirror.com/esbuild-plugin-public-directory/0.0.4:
+    resolution: {integrity: sha1-lApdEsC+bGVuHh6idlzZaujwHBk=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/esbuild-plugin-public-directory/download/esbuild-plugin-public-directory-0.0.4.tgz}
+    name: esbuild-plugin-public-directory
+    version: 0.0.4
+    peerDependencies:
+      esbuild: '*'
+      postcss: ^8.0.0
+    dependencies:
+      chokidar: registry.npmmirror.com/chokidar/3.5.2
+      fs-extra: registry.nlark.com/fs-extra/10.0.0
+    dev: true
 
   registry.npmmirror.com/esbuild-sunos-64/0.13.15:
     resolution: {integrity: sha512-lbivT9Bx3t1iWWrSnGyBP9ODriEvWDRiweAs69vI+miJoeKwHWOComSRukttbuzjZ8r1q0mQJ8Z7yUsDJ3hKdw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/esbuild-sunos-64/download/esbuild-sunos-64-0.13.15.tgz}
@@ -4095,7 +4118,6 @@ packages:
     resolution: {integrity: sha1-5BK40z9eAGWTy9PO5t+fLOu+gCo=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/graceful-fs/download/graceful-fs-4.2.8.tgz}
     name: graceful-fs
     version: 4.2.8
-    dev: false
 
   registry.npmmirror.com/ignore/4.0.6:
     resolution: {integrity: sha1-dQ49tYYgh7RzfrrIIH/9HvJ7Jfw=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ignore/download/ignore-4.0.6.tgz}

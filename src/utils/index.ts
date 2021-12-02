@@ -139,7 +139,7 @@ export function getMpaPageEntry(baseDir = 'src/pages') {
         // 应用兜底
         resolved('public/index.html'),
         // CLI兜底页面
-        path.resolve(__dirname, '../../public/index.html'),
+        path.resolve(__dirname, '../index.html'),
       ].find((html) => existsSync(html));
       return {
         ...v,
@@ -163,7 +163,7 @@ export function getUserConfig(configEnv:ConfigEnv, suffix = '') {
 */
 export function loadPageHtml(pageName:string) {
   // 兜底页面
-  const pages = [path.resolve(__dirname, '../../public/index.html')];
+  const pages = [path.resolve(__dirname, '../index.html')];
 
   // 单页/多页默认 public/index.html
   pages.unshift(resolved('public/index.html'));

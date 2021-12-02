@@ -4,3 +4,4 @@ tsconfig.json
 .eslintrc.json
 node_modules
 pnpm-lock.yaml
+tsup.config.ts

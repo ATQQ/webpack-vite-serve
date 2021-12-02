@@ -1,5 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { defineConfig } from 'tsup';
+import publicDir from 'esbuild-plugin-public-directory';
 
 export default defineConfig({
   splitting: false,
@@ -9,4 +9,5 @@ export default defineConfig({
   external: [
     'vue',
   ],
+  esbuildPlugins: [publicDir()],
 });
