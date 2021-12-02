@@ -1,6 +1,6 @@
 {
   "name": "webpack-vite-serve",
-  "version": "0.1.0",
+  "version": "0.1.1-beta.0",
   "description": "为webpack项目提供一键接入Vite的能力",
   "main": "dist/index.js",
   "bin": {
