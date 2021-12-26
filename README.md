@@ -4,6 +4,9 @@
 相关文章：[webpack项目接入Vite的通用方案介绍](https://sugarat.top/technology/learn/webapck2vite.html)
 
 包管理工具推荐使用[pnpm](https://pnpm.io/)
+```sh
+npm i -g pnpm
+```
 ## Usage
 ### Installed
 ```sh
@@ -108,28 +111,24 @@ wvs build [options]
   * [x] Vue MPA
   * [ ] React MPA
 
-### Run Demos
+### Run Examples
 
 ```sh
+pnpm install
+
 # 1
-cd demos
+cd examples
 
 # 2
 cd js
 
 # 3
-cd demoProject
+cd react-mpa
 
-# 4 推荐pnpm
-yarn install
-  # or
-npm install
-  # or 
-pnpm install
-
-# 5
+# 4
 # run webpack devServer
 npm run dev
+# 5
 # run vite devServer
 npm run dev:vite
 ```

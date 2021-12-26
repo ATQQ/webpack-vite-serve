@@ -1,5 +1,5 @@
 {
-  "name": "react-mpa",
+  "name": "js-react-spa",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,11 +9,13 @@
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
-    "webpack-vite-serve": "^0.1.1-beta.3"
+    "webpack-vite-serve": "workspace:*"
   },
   "scripts": {
-    "dev:vite": "wvs start -f react --mpa",
-    "build:vite": "wvs build -f react --mpa",
+    "dev": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
+    "dev:vite": "wvs start -f react",
+    "build": "react-scripts build",
+    "build:vite": "wvs build -f react",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

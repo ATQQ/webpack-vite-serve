@@ -1,0 +1,4 @@
+packages:
+  - 'packages/*'
+  - 'packages/examples/js/*'
+  - 'packages/examples/ts/*'

@@ -23,7 +23,7 @@ export default function BuildPlugin(): PluginOption {
     });
   }
   const htmlContentMap = new Map();
-  let userConfig:ResolvedConfig = null;
+  let userConfig: ResolvedConfig = null;
   return {
     name: 'wvs-build',
     apply: 'build',
@@ -67,11 +67,11 @@ export default function BuildPlugin(): PluginOption {
       // 目录调整
       entry.forEach((e) => {
         const { entryName, entryJs } = e;
-        const outputHtmlPath = resolved(outDir, path.parse(entryJs).dir, tempHtmlName);
-        writeFileSync(resolved(outDir, `${entryName}.html`), readFileSync(outputHtmlPath));
+        const outputHtmlPath = path.join(outDir, path.parse(entryJs).dir, tempHtmlName)
+        writeFileSync(path.join(outDir, `${entryName}.html`), readFileSync(outputHtmlPath));
       });
       // 移除临时资源
-      rmdirSync(resolved(outDir, 'src'), { recursive: true });
+      rmdirSync(path.join(outDir, 'src'), { recursive: true });
     },
   };
 }

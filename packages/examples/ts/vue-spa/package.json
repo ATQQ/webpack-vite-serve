@@ -1,12 +1,12 @@
 {
-  "name": "vue-spa-ts",
+  "name": "ts-vue-spa",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
-    "dev:vite": "wvs start -f vue --mpa",
+    "dev:vite": "wvs start -f vue",
     "build": "vue-cli-service build",
-    "build:vite": "wvs build -f vue --mpa",
+    "build:vite": "wvs build -f vue",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -31,6 +31,6 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^7.0.0",
     "typescript": "~4.1.5",
-    "webpack-vite-serve": "^0.1.1-beta.3"
+    "webpack-vite-serve": "workspace:*"
   }
 }
