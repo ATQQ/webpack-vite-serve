@@ -1,16 +1,15 @@
 {
-  "name": "react-spa-ts",
+  "name": "react-spa",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/node": "^16.11.6",
-    "@types/react": "^17.0.33",
-    "@types/react-dom": "^17.0.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "typescript": "^4.4.4",
-    "webpack-vite-serve": "^0.1.1-beta.3"
+    "web-vitals": "^1.0.1"
+  },
+  "devDependencies": {
+    "webpack-vite-serve": "workspace:*"
   },
   "scripts": {
     "dev": "SKIP_PREFLIGHT_CHECK=true react-scripts start",

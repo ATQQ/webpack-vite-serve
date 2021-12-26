@@ -4,16 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
-    "dev:vite": "wvs start -f vue --mpa",
+    "dev:vite": "wvs start -f vue",
     "build": "vue-cli-service build",
-    "build:vite": "wvs build -f vue --mpa"
+    "build:vite": "wvs build -f vue"
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0",
-    "webpack-vite-serve": "^0.1.1-beta.3"
+    "webpack-vite-serve": "workspace:*"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
