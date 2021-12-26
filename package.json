@@ -2,25 +2,25 @@
   "name": "webpack-vite-serve-monorepo",
   "private": true,
   "description": "为webpack项目提供一键接入Vite的能力",
-  "dependencies": {},
   "devDependencies": {
     "@types/ejs": "^3.1.0",
-    "@types/node": "^16.11.11",
-    "@typescript-eslint/eslint-plugin": "^5.5.0",
-    "@typescript-eslint/parser": "^5.5.0",
-    "eslint": "^8.3.0",
+    "@types/node": "^16.11.17",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "esbuild-plugin-public-directory": "^0.0.4",
+    "eslint": "^8.5.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.25.3",
     "rimraf": "^3.0.2",
-    "tsup": "^5.10.0",
-    "typescript": "^4.5.2",
-    "esbuild-plugin-public-directory": "^0.0.4"
+    "tsup": "^5.11.9",
+    "typescript": "^4.5.4"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "lint": "eslint packages/** --fix",
     "build": "cd packages/webpack-vite-serve && npm run build",
-    "dev": "cd packages/webpack-vite-serve && npm run dev"
+    "dev": "cd packages/webpack-vite-serve && npm run dev",
+    "build:example": "pnpm -r build:vite --workspace-concurrency 0"
   },
   "repository": {
     "type": "git",

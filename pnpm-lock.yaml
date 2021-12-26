@@ -5,16 +5,16 @@ importers:
   .:
     specifiers:
       '@types/ejs': ^3.1.0
-      '@types/node': ^16.11.11
-      '@typescript-eslint/eslint-plugin': ^5.5.0
-      '@typescript-eslint/parser': ^5.5.0
+      '@types/node': ^16.11.17
+      '@typescript-eslint/eslint-plugin': ^5.8.0
+      '@typescript-eslint/parser': ^5.8.0
       esbuild-plugin-public-directory: ^0.0.4
-      eslint: ^8.3.0
+      eslint: ^8.5.0
       eslint-config-airbnb-base: ^14.2.1
       eslint-plugin-import: ^2.25.3
       rimraf: ^3.0.2
-      tsup: ^5.10.0
-      typescript: ^4.5.2
+      tsup: ^5.11.9
+      typescript: ^4.5.4
     devDependencies:
       '@types/ejs': registry.npmmirror.com/@types/ejs/3.1.0
       '@types/node': registry.npmmirror.com/@types/node/16.11.17
